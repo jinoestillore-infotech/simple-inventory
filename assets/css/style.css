@@ -1,0 +1,93 @@
+@font-face {
+    font-family: 'Bungee';
+    src: url('../fonts/Bungee-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    font-family:Arial, Helvetica, sans-serif;
+    min-height: 100vh;
+    background: linear-gradient(#f3a1a1, #f7e4e4);
+    background-attachment: fixed;
+}
+
+.content {
+    background-color: transparent;
+    backdrop-filter: blur(5px);
+}
+
+.links .nav-link:hover {
+    color: red;
+}
+
+.nav-black {
+    color: black;
+}
+
+.nav-blur {
+    background: rgba(255, 255, 255, 0.25); 
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px); 
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+}
+
+.navbar-nav .dropdown-menu {
+    transition: all 0.5s ease;
+    opacity: 0;
+    display: block;
+    visibility: hidden;
+}
+
+.navbar-nav .dropdown:hover > .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+}
+
+.helpdesk-dropdown > .helpdesk-box > a:hover {
+    background-color: rgb(223, 127, 127);
+    color: white; 
+}
+
+.helpdesk-dropdown .dropdown-item:hover {
+    background-color: rgb(223, 127, 127);
+    color: white;
+}
+
+.special-margin {
+    margin-top: 40px;
+}
+
+.home-style {
+    font-family: 'Bungee', sans-serif;
+}
+
+.button-style {
+    background-color: #f71919;
+    color: white;
+}
+
+.button-style:hover {
+    border: 1px solid black;
+    color: rgb(3, 13, 44);
+}
+
+.border-for-hover {
+    border-top: 5px solid red;
+    border-radius: 70px;
+}
+
+/* .border-for-hover {
+    border-left: 5px solid red;
+    border-top: 1px solid rgb(0, 0, 0);
+    border-bottom: 0px solid rgb(0, 0, 0);
+    border-radius: 100px 0;
+} */

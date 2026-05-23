@@ -1,0 +1,81 @@
+inventory-app/
+│
+├─ dashboard
+│   └─ index.php           → Dashboard / Home / Sidebar menu include
+│   └─ recent_activity.php → Actions recorded made by the user
+├─ database
+    └─ config.php          → Database connection
+├─ assets/
+│   ├─ css/
+│   │   └─ style.css
+│   └─ js/
+│       └─ script.js
+├─ items/	
+│   ├─ index.php        → View items
+│   ├─ add.php          → Add item
+│   ├─ edit.php         → Edit item
+│   └─ delete.php       → Delete item
+│   └─ show.php         → Show item
+│   └─ search_items.php → Search item
+│   └─ assign_asset.php → Assign asset code to the item
+├─ categories/
+│   ├─ index.php
+│   ├─ add.php
+│   ├─ edit.php
+│   └─ delete.php
+└─ suppliers/
+    ├─ index.php
+    ├─ add.php
+    ├─ edit.php
+    └─ delete.php
+
+
+
+-- Create database
+CREATE DATABASE IF NOT EXISTS inventory_db;
+USE inventory_db;
+
+-- Items table
+CREATE TABLE items (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    category_id INT NOT NULL,
+    supplier_id INT NOT NULL,
+    quantity INT DEFAULT 0,
+    price DECIMAL(10,2) DEFAULT 0.00,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Categories table
+CREATE TABLE categories (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Suppliers table
+CREATE TABLE suppliers (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    contact VARCHAR(50),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE `activity_log` (
+  `id` int(11) NOT NULL,
+  `entity_type` varchar(50) NOT NULL,
+  `entity_name` varchar(100) DEFAULT NULL,
+  `action` varchar(50) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+ALTER TABLE items
+ADD CONSTRAINT fk_category
+FOREIGN KEY (category_id) REFERENCES categories(id)
+ON DELETE CASCADE;
+
+ALTER TABLE items
+ADD CONSTRAINT fk_supplier
+FOREIGN KEY (supplier_id) REFERENCES suppliers(id)
+ON DELETE CASCADE;
+
